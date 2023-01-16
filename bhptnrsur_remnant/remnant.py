@@ -1,6 +1,6 @@
 #############################################################################
 ##
-##      Filename: bhptnrsur_remnant.py
+##      Filename: remnant.py
 ##
 ##      Author: Tousif Islam
 ##
@@ -101,28 +101,64 @@ class BHPTNRSurRemnant():
         return self._gpr_output_to_remnant_mass(gpr_eval + grp_err_eval) - self._gpr_output_to_remnant_mass(gpr_eval)
     
     
-    def _evaluate_fit_at_Xfit(self, X_fit):
+    def _evaluate_Mf_fit_at_Xfit(self, X_fit):
         """
-        evaluates GPR fits at the parameterized X values
+        evaluates GPR fits at the parameterized X values for the remnant mass
         """
         # compute GPR model predictions
         mf_gpr, mferr_gpr = self.mf_model.predict(X_fit, return_std=True)
-        sf_gpr, sferr_gpr = self.sf_model.predict(X_fit, return_std=True)
-        vf_gpr, vferr_gpr = self.vf_model.predict(X_fit, return_std=True)
-        Lp_gpr, Lperr_gpr = self.Lpeak_model.predict(X_fit, return_std=True)
-        
         # transform the fit outputs to meaningful physical quantities
         mf = self._gpr_output_to_remnant_mass(mf_gpr)
-        sf = self._gpr_output_to_remnant_mass(sf_gpr)
-        vf = self._gpr_output_to_remnant_kick(vf_gpr)
-        Lp = self._gpr_output_to_peak_lumoinosity(Lp_gpr)
-        
         # compute GPR errors in the linear scale
         mferr = self._gpr_output_to_remnant_mass(mf_gpr + mferr_gpr) - self._gpr_output_to_remnant_mass(mf_gpr)
-        sferr = self._gpr_output_to_remnant_mass(sf_gpr + sferr_gpr) - self._gpr_output_to_remnant_mass(sf_gpr)
+        return mf, mferr
+    
+    def _evaluate_Sf_fit_at_Xfit(self, X_fit):
+        """
+        evaluates GPR fits at the parameterized X values for the remnant spin
+        """
+        # compute GPR model predictions
+        sf_gpr, sferr_gpr = self.sf_model.predict(X_fit, return_std=True)
+        # transform the fit outputs to meaningful physical quantities
+        sf = self._gpr_output_to_remnant_mass(sf_gpr)
+        # compute GPR errors in the linear scale
+        sferr = self._gpr_output_to_remnant_spin(sf_gpr + sferr_gpr) - self._gpr_output_to_remnant_spin(sf_gpr)
+        return sf, sferr
+    
+    def _evaluate_vf_fit_at_Xfit(self, X_fit):
+        """
+        evaluates GPR fits at the parameterized X values for the remnant kick
+        """
+        # compute GPR model predictions
+        vf_gpr, vferr_gpr = self.vf_model.predict(X_fit, return_std=True)
+        # transform the fit outputs to meaningful physical quantities
+        vf = self._gpr_output_to_remnant_kick(vf_gpr)
+        # compute GPR errors in the linear scale
         vferr = self._gpr_output_to_remnant_kick(vf_gpr + vferr_gpr) - self._gpr_output_to_remnant_kick(vf_gpr)
+        return vf, vferr
+    
+    
+    def _evaluate_Lpeak_fit_at_Xfit(self, X_fit):
+        """
+        evaluates GPR fits at the parameterized X values for the peak luminosity
+        """
+        # compute GPR model predictions
+        Lp_gpr, Lperr_gpr = self.Lpeak_model.predict(X_fit, return_std=True)
+        # transform the fit outputs to meaningful physical quantities
+        Lp = self._gpr_output_to_peak_lumoinosity(Lp_gpr)
+        # compute GPR errors in the linear scale
         Lperr = self._gpr_output_to_peak_lumoinosity(Lp_gpr + Lperr_gpr) -  self._gpr_output_to_peak_lumoinosity(Lp_gpr)
-        
+        return Lp, Lperr
+    
+    
+    def _evaluate_fit_at_Xfit(self, X_fit):
+        """
+        evaluates all GPR fits at the parameterized X values
+        """        
+        mf, mferr = self._evaluate_Mf_fit_at_Xfit(X_fit)
+        sf, sferr = self._evaluate_Sf_fit_at_Xfit(X_fit)
+        vf, vferr = self._evaluate_Sf_fit_at_Xfit(X_fit)
+        Lp, Lperr = self._evaluate_Sf_fit_at_Xfit(X_fit) 
         return mf, mferr, sf, sferr, vf, vferr, Lp, Lperr
         
         
