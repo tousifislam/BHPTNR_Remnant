@@ -42,7 +42,7 @@ class BHPTAnalyticalFits():
         small_q_corr = (1-4/self.q)**0.5
         return SKH_fit * small_q_corr
 
-    def ISK_kick_fit(self):
+    def IFK_kick_fit(self):
         """
         Analytical fit for the kick velocity - fitted to BHPTNRSur1dq1e4 estimates
         Eq(28) of Islam, Field & Khanna
