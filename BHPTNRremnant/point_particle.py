@@ -37,26 +37,26 @@ class PointParticle():
         """
         compute symmetric mass ratio
         """
-        return q/(1+q)**2
+        return self.q/(1+self.q)**2
     
     def _Z1(self):
         """
         auxilary function for computing r_isco
         """
-        return 1 + ((1-a*a)**(1/3)) * ( (1+a*a)**(1/3) + (1-a*a)**(1/3))
+        return 1 + ((1-self.a*self.a)**(1/3)) * ( (1+self.a*self.a)**(1/3) + (1-self.a*self.a)**(1/3))
     
     def _Z2(self):
         """
         auxilary function for computing r_isco
         """
         Z1 = self._Z1()
-        return np.sqrt(3*a*a + Z1*Z1)
+        return np.sqrt(3*self.a*self.a + Z1*Z1)
     
     def _sign_of_a(self):
         """
         compute sign of the spin
         """
-        if a<0.0:
+        if self.a<0.0:
             sign = -1
         else:
             sign = 1
@@ -81,6 +81,7 @@ class PointParticle():
         """
         compute radiated energy until the ISCO
         """
+        nu = self._symmetric_mass_ratio()
         return nu * ( 1 - self.E_at_isco )
     
     def _compute_Lrad_isco(self):
@@ -88,7 +89,7 @@ class PointParticle():
         compute radiated orbital angular momenta at the ISCO
         """
         nu = self._symmetric_mass_ratio()
-        return (2*nu* (3*np.sqrt(self.r_isco) - 2*a) ) / (np.sqrt(3*self.r_isco))
+        return (2*nu* (3*np.sqrt(self.r_isco) - 2*self.a) ) / (np.sqrt(3*self.r_isco))
     
     def _compute_Mfinal(self):
         """
