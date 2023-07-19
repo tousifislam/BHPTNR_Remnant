@@ -101,5 +101,15 @@ class PointParticle():
         compute spin of the remnant
         """
         return (self.Lrad + self.a*self.M*self.M) / self.Mfinal**2
+    
+    def obtain_final_state(self):
+        """
+        compute mass and spin of the remnant
+        """
+        mf = self._compute_Mfinal()
+        sf = self._compute_afinal()
+        return mf, sf
+    
+    
         
 
