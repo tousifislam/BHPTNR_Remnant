@@ -2,8 +2,8 @@ from setuptools import setup
 
 long_description = open('README.md').read()
 
-setup(name='gwtools',
-      version='1.1.4',
+setup(name='BHPTNRremnant',
+      version='0.0.1',
       author='Tousif Islam',
       author_email='tousifislam24@gmail.com',
       packages=['BHPTNRremnant'],
