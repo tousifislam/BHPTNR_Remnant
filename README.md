@@ -7,9 +7,9 @@
 Example usage is provided in ```tutorial.ipynb``` notebook.
 
 ### Using pip
-To install
-```pip install BHPTNRremnant```
+To install : ```pip install BHPTNRremnant```
 
+A web-based example jupyter notebook tutorial is hosted here : ```https://github.com/tousifislam/BHPTNR_Remnant/blob/main/tutorials/tutorial.ipynb```
 Once installed, import is as ```import BHPTNRremnant```
 
 NR informed ppBHPT based surrogate fits can then be used as
