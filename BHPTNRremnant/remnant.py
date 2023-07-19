@@ -19,10 +19,8 @@ import pickle
 import argparse
 import sys, subprocess
 
-# find the git home directory
-git_home = subprocess.check_output(['git', 'rev-parse', \
-    '--show-toplevel']).decode('utf-8').strip('\n')
-sys.path.append('%s'%git_home)
+import os
+package_home = os.path.dirname(__file__) 
 
 class BHPTNRSurRemnant():
     """
@@ -43,7 +41,12 @@ class BHPTNRSurRemnant():
         peak luminosity and kick velocity
         """
         models = []
-        with open("%s/data/BHPTNRSur1dq1e3_remnant.pickle"%git_home, "rb") as f:
+        
+        if os.path.isfile("%s/data/BHPTNRSur1dq1e3_remnant.pickle"%package_home)==False:
+            os.system('wget https://zenodo.org/record/8162005/files/BHPTNRSur1dq1e3_remnant.pickle -P %s/data/'%(package_home))
+            print('... remnant fit downloaded')
+        
+        with open("%s/data/BHPTNRSur1dq1e3_remnant.pickle"%package_home, "rb") as f:
             while True:
                 try:
                     models.append(pickle.load(f))
