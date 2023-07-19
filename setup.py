@@ -1,17 +1,20 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 long_description = open('README.md').read()
 
 setup(name='BHPTNRremnant',
-      version='0.0.1',
+      version='0.0.4',
       author='Tousif Islam',
       author_email='tousifislam24@gmail.com',
-      packages=['BHPTNRremnant'],
+      #packages=['BHPTNRremnant'],
+      #packages=find_packages(),
+      packages=['BHPTNRremnant', 'BHPTNRremnant.data', 'BHPTNRremnant.tests'],
       license='MIT',
       include_package_data=True,
-      contributors=[# Alphabetical by last name.""],
+      contributors=['Tousif Islam, Scott Field, Gaurav Khanna'],
       description='Python package for remnant black hole properties using perturbation theory and NR',
       long_description=long_description,
+      long_description_content_type='text/markdown',
       # will start new downloads if these are installed in a non-standard location
       # install_requires=["numpy","matplotlib","scipy"],
       classifiers=[

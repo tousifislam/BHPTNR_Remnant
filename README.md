@@ -6,6 +6,52 @@
 
 Example usage is provided in ```tutorial.ipynb``` notebook.
 
+### Using pip
+To install
+```pip install BHPTNRremnant```
+
+Once installed, import is as ```import BHPTNRremnant```
+
+NR informed ppBHPT based surrogate fits can then be used as
+```
+# import surrogate fits
+from BHPTNRremnant.remnant import BHPTNRSurRemnant
+
+# instantiate the class
+fits = BHPTNRSurRemnant()
+# evaluate the fits at mass ratio q
+# final mass, final spin, kick velocity and luminosity distance and their associated GPR fit error
+mf, mferr, sf, sferr, vf, vferr, Lp, Lperr = fits.evaluate_fit(15)
+print(mf,sf, vf,Lp)
+```
+
+One can also use the analytical fits for the kick velocities as following:
+```
+from BHPTNRremnant.analytical_fits import BHPTAnalyticalFits
+
+# instantiate analytical fits
+fit_obj = BHPTAnalyticalFits(q=15, a=0)
+# evaluate kick velocity form Sundararajan, Khanna & Hughes
+vf = fit_obj.SKH_kick_fit()
+print(vf)
+# evaluate kick velocity form Sundararajan, Khanna & Hughes
+# corrected for the small mass ratio
+vf = fit_obj.SKH_kick_fit_small_q_corrected()
+print(vf)
+# evaluate kick velocity form Islam, Field & Khanna
+vf = fit_obj.IFK_kick_fit()
+print(vf)
+```
+
+It is also possible to obtain analytical results at extreme mass ratio limit:
+```
+from BHPTNRremnant.point_particle import PointParticle
+
+# instantiate point particle limit results
+pp = PointParticle(q=1000, a=0)
+# obtain final mass and final spin
+pp.obtain_final_state()
+```
 
 ## Citation guideline
 

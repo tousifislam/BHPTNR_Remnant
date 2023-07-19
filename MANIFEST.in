@@ -1,0 +1,5 @@
+# in addition to standard files included by distutils setup.py, include these files 
+include LICENSE
+include README.md
+include BHPTNR_Remnant/BHPTNRremnant/data/BHPTNRSur1dq1e3_remnant.pickle
+include BHPTNR_Remnant/*.py
