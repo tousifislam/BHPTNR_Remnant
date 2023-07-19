@@ -3,8 +3,8 @@ from setuptools import find_packages, setup
 long_description = open('README.md').read()
 
 setup(name='BHPTNRremnant',
-      version='0.0.4',
-      author='Tousif Islam',
+      version='0.0.2',
+      author='Tousif Islam, Scott Field, Gaurav Khanna',
       author_email='tousifislam24@gmail.com',
       #packages=['BHPTNRremnant'],
       #packages=find_packages(),
