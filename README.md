@@ -7,6 +7,7 @@
 Example usage is provided in ```tutorial.ipynb``` notebook.
 
 ### Using pip
+This package is available in Pypi : [https://pypi.org/project/BHPTNRremnant/](https://pypi.org/project/BHPTNRremnant/)
 To install : ```pip install BHPTNRremnant```
 
 A web-based example jupyter notebook tutorial is hosted here : ```https://github.com/tousifislam/BHPTNR_Remnant/blob/main/tutorials/tutorial.ipynb```
