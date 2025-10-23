@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "BHPTNRremnant"
+version = "0.0.3"
+authors = [
+    {name = "Tousif Islam", email = "tousifislam24@gmail.com"},
+    {name = "Scott Field"},
+    {name = "Gaurav Khanna"},
+]
+description = "Python package for remnant black hole properties using perturbation theory and NR"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "scipy",
+]
+
+[project.urls]
+Homepage = "https://github.com/tousifislam/BHPTNR_Remnant"
+Repository = "https://github.com/tousifislam/BHPTNR_Remnant"
+Documentation = "https://github.com/tousifislam/BHPTNR_Remnant/blob/main/tutorials/tutorial.ipynb"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["BHPTNRremnant*"]
