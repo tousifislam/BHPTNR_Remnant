@@ -160,8 +160,8 @@ class BHPTNRSurRemnant():
         """        
         mf, mferr = self._evaluate_Mf_fit_at_Xfit(X_fit)
         sf, sferr = self._evaluate_Sf_fit_at_Xfit(X_fit)
-        vf, vferr = self._evaluate_Sf_fit_at_Xfit(X_fit)
-        Lp, Lperr = self._evaluate_Sf_fit_at_Xfit(X_fit) 
+        vf, vferr = self._evaluate_vf_fit_at_Xfit(X_fit)
+        Lp, Lperr = self._evaluate_Lpeak_fit_at_Xfit(X_fit) 
         return mf, mferr, sf, sferr, vf, vferr, Lp, Lperr
         
         
