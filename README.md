@@ -1,5 +1,7 @@
 # BHPTNR_Remnant
 
+[![PyPI version](https://badge.fury.io/py/BHPTNRremnant.svg)](https://pypi.org/project/BHPTNRremnant/)
+
 ```BHPTNR_Remnant``` is an easy-to-use python package to efficiently predict the remnant mass, remnant spin, peak luminosity and the final kick imparted on the remnant black hole directly from the gravitational radiation using GPR fits. These fits have been built on the remnant data calculated from numerical relativity informed black hole perturbation theory based waveforms. 
 
 ## Tutorials
