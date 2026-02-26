@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "BHPTNRremnant"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
     {name = "Tousif Islam", email = "tousifislam24@gmail.com"},
     {name = "Scott Field"},
@@ -13,18 +13,18 @@ authors = [
 description = "Python package for remnant black hole properties using perturbation theory and NR"
 readme = "README.md"
 license = {text = "MIT"}
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Physics",
@@ -33,6 +33,7 @@ dependencies = [
     "numpy",
     "matplotlib",
     "scipy",
+    "scikit-learn",
 ]
 
 [project.urls]

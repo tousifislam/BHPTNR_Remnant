@@ -16,10 +16,8 @@
 import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor
 import pickle
-import argparse
-import sys, subprocess
-
 import os
+import urllib.request
 package_home = os.path.dirname(__file__) 
 
 class BHPTNRSurRemnant():
@@ -42,11 +40,14 @@ class BHPTNRSurRemnant():
         """
         models = []
         
-        if os.path.isfile("%s/data/BHPTNRSur1dq1e3_remnant.pickle"%package_home)==False:
-            os.system('wget https://zenodo.org/record/8162005/files/BHPTNRSur1dq1e3_remnant.pickle -P %s/data/'%(package_home))
+        data_path = os.path.join(package_home, "data", "BHPTNRSur1dq1e3_remnant.pickle")
+        if not os.path.isfile(data_path):
+            url = "https://zenodo.org/record/8162005/files/BHPTNRSur1dq1e3_remnant.pickle"
+            os.makedirs(os.path.dirname(data_path), exist_ok=True)
+            urllib.request.urlretrieve(url, data_path)
             print('... remnant fit downloaded')
         
-        with open("%s/data/BHPTNRSur1dq1e3_remnant.pickle"%package_home, "rb") as f:
+        with open(data_path, "rb") as f:
             while True:
                 try:
                     models.append(pickle.load(f))
@@ -90,7 +91,7 @@ class BHPTNRSurRemnant():
         return 10**gpr_eval
 
     
-    def _gpr_output_to_peak_lumoinosity(self, gpr_eval):
+    def _gpr_output_to_peak_luminosity(self, gpr_eval):
         """
         transforms fit output to physical peak luminosity values
         """
@@ -123,7 +124,7 @@ class BHPTNRSurRemnant():
         # compute GPR model predictions
         sf_gpr, sferr_gpr = self.sf_model.predict(X_fit, return_std=True)
         # transform the fit outputs to meaningful physical quantities
-        sf = self._gpr_output_to_remnant_mass(sf_gpr)
+        sf = self._gpr_output_to_remnant_spin(sf_gpr)
         # compute GPR errors in the linear scale
         sferr = self._gpr_output_to_remnant_spin(sf_gpr + sferr_gpr) - self._gpr_output_to_remnant_spin(sf_gpr)
         return sf, sferr
@@ -148,9 +149,9 @@ class BHPTNRSurRemnant():
         # compute GPR model predictions
         Lp_gpr, Lperr_gpr = self.Lpeak_model.predict(X_fit, return_std=True)
         # transform the fit outputs to meaningful physical quantities
-        Lp = self._gpr_output_to_peak_lumoinosity(Lp_gpr)
+        Lp = self._gpr_output_to_peak_luminosity(Lp_gpr)
         # compute GPR errors in the linear scale
-        Lperr = self._gpr_output_to_peak_lumoinosity(Lp_gpr + Lperr_gpr) -  self._gpr_output_to_peak_lumoinosity(Lp_gpr)
+        Lperr = self._gpr_output_to_peak_luminosity(Lp_gpr + Lperr_gpr) -  self._gpr_output_to_peak_luminosity(Lp_gpr)
         return Lp, Lperr
     
     
